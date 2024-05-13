@@ -1,9 +1,19 @@
 mod cahp8;
 
-struct Point(i32, i32);
+#[derive(Debug)]
+enum Direction {
+    Left,
+    Right,
+}
+
+#[derive(Debug)]
+enum PlayerMove {
+    Pass,
+    Run(Direction),
+    Teleport { x: u32, y: u32},
+}
 
 fn main() {
-    let p = Point(17, 23);
-    println!("({}, {})", p.0, p.1)
-
+    let m: PlayerMove = PlayerMove::Run(Direction::Left);
+    println!("On this turn: {:?}", m)
 }
