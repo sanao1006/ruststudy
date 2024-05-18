@@ -6,27 +6,29 @@ mod cahp8;
 mod chap10;
 mod chap12;
 
+trait Animal {
+    fn leg_count(&self) -> u32;
+}
 
-trait Pet {
-    fn talk(&self) -> String;
+trait Pet: Animal {
+    fn name(&self) -> String;
+}
 
-    fn greet(&self) {
-        println!("Oh you're a cutie! What's your name? {}", self.talk());
+struct Dog(String);
+
+impl Animal for Dog {
+    fn leg_count(&self) -> u32 {
+        4
     }
 }
 
-struct Dog {
-    name: String,
-    age: i8,
-}
-
 impl Pet for Dog {
-    fn talk(&self) -> String {
-        format!("Woof, my name is {}!", self.name)
+    fn name(&self) -> String {
+        self.0.clone()
     }
 }
 
 fn main() {
-    let dog = Dog { name: String::from("Fido"), age: 5 };
-    dog.greet();
+    let puppy = Dog(String::from("ao"));
+    println!("{} has {} legs", puppy.name(), puppy.leg_count());
 }
