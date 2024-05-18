@@ -4,6 +4,7 @@ use crate::chap10::{car_arrived, car_door_closed, car_door_opened, car_floor_but
 
 mod cahp8;
 mod chap10;
+mod chap12;
 
 fn sleep_for(secs: f32) {
     if let Ok(dur) = Duration::try_from_secs_f32(secs)  {
