@@ -2,21 +2,26 @@ use std::time::Duration;
 
 use chap13::{do_things, StderrLogger, VerbosityFilter};
 
-use crate::chap10::{car_arrived, car_door_closed, car_door_opened, car_floor_button_pressed, lobby_call_button_pressed, Direction};
+use crate::chap19::chap19::{Language, PackageBuilder};
 
 mod cahp8;
 mod chap10;
 mod chap12;
 mod chap13;
+mod chap19;
 
-
-fn say_hello(name: String) {
-    println!("Hello {name}")
-}
 
 fn main() {
-    let name = String::from("Alice");
-    say_hello(name.clone());
-    say_hello(name);
-    // say_hello(name);
+    let base64 = PackageBuilder::new("base64").version("0.13").build();
+    println!("base64: {base64:?}");
+    let log =
+        PackageBuilder::new("log").version("0.4").language(Language::Rust).build();
+    println!("log: {log:?}");
+    let serde = PackageBuilder::new("serde")
+        .authors(vec!["djmitche".into()])
+        .version(String::from("4.0"))
+        .dependency(base64.as_dependency())
+        .dependency(log.as_dependency())
+        .build();
+    println!("serde: {serde:?}");
 }
