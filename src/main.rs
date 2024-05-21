@@ -9,13 +9,14 @@ mod chap10;
 mod chap12;
 mod chap13;
 
-struct Point(i32, i32);
+
+fn say_hello(name: String) {
+    println!("Hello {name}")
+}
 
 fn main() {
-    {
-        let p = Point(3, 4);
-        println!("x: {}", p.0)
-    }
-    // error: cannot find value `p` in this scope
-    println!("y: {}", p.1);
+    let name = String::from("Alice");
+    say_hello(name.clone());
+    say_hello(name);
+    // say_hello(name);
 }
