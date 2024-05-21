@@ -9,8 +9,13 @@ mod chap10;
 mod chap12;
 mod chap13;
 
+struct Point(i32, i32);
 
 fn main() {
-    let l = VerbosityFilter { max_verbosity: 3, inner: StderrLogger };
-    do_things(&l);
+    {
+        let p = Point(3, 4);
+        println!("x: {}", p.0)
+    }
+    // error: cannot find value `p` in this scope
+    println!("y: {}", p.1);
 }
